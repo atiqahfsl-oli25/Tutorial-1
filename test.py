@@ -3,37 +3,38 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-st.set_page_config(
-    page_title="Scientific Visualization"
-)
+# Set Streamlit page config
+st.set_page_config(page_title="Gender Distribution", layout="centered")
 
-st.header("Scientific Visualization", divider="gray")
+# Title of the app
+st.title("🎓 Arts Faculty Gender Distribution")
 
-# URL to the CSV file
+# Load data
 url = "https://raw.githubusercontent.com/atiqahfsl-oli25/Tutorial-1/refs/heads/main/arts_faculty_data.csv"
 
-# Read the CSV file
+# Try reading the CSV file
 try:
     df_url = pd.read_csv(url)
-    print(df_url.head())  # Show first few rows
+    st.subheader("📋 Raw Data Preview")
+    st.dataframe(df_url.head())  # Show first few rows
 except Exception as e:
-    print(f"An error occurred while reading the CSV file from the URL: {e}")
+    st.error(f"❌ An error occurred while reading the CSV file: {e}")
 else:
-    # Check if 'Gender' column exists
     if 'Gender' in df_url.columns:
-        # Count occurrences of each gender
+        # Count gender values
         gender_counts = df_url['Gender'].value_counts().reset_index()
         gender_counts.columns = ['Gender', 'Count']
 
-        # Create interactive pie chart using Plotly
+        # Plotly Pie Chart
+        st.subheader("📊 Gender Distribution Pie Chart")
         fig = px.pie(
             gender_counts,
             names='Gender',
             values='Count',
             title='Distribution of Gender in Arts Faculty',
-            hole=0.3  # Set to 0 for full pie, or >0 for donut chart
+            hole=0.3  # Optional: donut chart
         )
-        fig.update_traces(textinfo='percent+label')  # Show label and percentage
-        fig.show()
+        fig.update_traces(textinfo='percent+label')
+        st.plotly_chart(fig, use_container_width=True)
     else:
-        print("The column 'Gender' was not found in the dataset.")
+        st.warning("⚠️ The column 'Gender' was not found in the dataset.")
