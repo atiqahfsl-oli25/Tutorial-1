@@ -69,7 +69,7 @@ else:
     else:
         st.warning("⚠️ The column 'Gender' was not found in the dataset.")
 
-# Arts program distribution 
+# Arts program distribution by number of students  
     if 'Arts Program' in df_url.columns:
         # Count program occurrences
         program_counts = df_url['Arts Program'].value_counts().reset_index()
@@ -98,4 +98,33 @@ else:
         st.plotly_chart(fig, use_container_width=True)
     else:
         st.warning("⚠️ The column 'Arts Program' was not found in the dataset.")
-       
+
+# Distribution of Academic Year 
+    if 'Bachelor  Academic Year in EU' in df_url.columns and 'Masters Academic Year in EU' in df_url.columns:
+        # Combine both columns and remove NaN
+        academic_year_combined = pd.concat([
+            df_url['Bachelor  Academic Year in EU'],
+            df_url['Masters Academic Year in EU']
+        ]).dropna()
+
+        # Count occurrences
+        academic_year_counts = academic_year_combined.value_counts().reset_index()
+        academic_year_counts.columns = ['Academic Year', 'Count']
+
+        # Create interactive donut chart
+        st.subheader("📊 Academic Year Distribution (Donut Chart)")
+        fig = px.pie(
+            academic_year_counts,
+            names='Academic Year',
+            values='Count',
+            hole=0.5,
+            title='Distribution of Academic Years (Bachelor & Masters)',
+            color_discrete_sequence=px.colors.qualitative.Pastel
+        )
+        fig.update_traces(textinfo='percent+label')
+
+        # Display chart
+        st.plotly_chart(fig, use_container_width=True)
+    else:
+        st.warning("⚠️ One or both columns ('Bachelor  Academic Year in EU', 'Masters Academic Year in EU') were not found in the dataset.")
+
