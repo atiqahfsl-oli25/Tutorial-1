@@ -39,25 +39,19 @@ else:
     else:
         st.warning("⚠️ The column 'Gender' was not found in the dataset.")
 
-# Example: Load your dataset (replace this with your own)
-# df_url = pd.read_csv("https://raw.githubusercontent.com/atiqahfsl-oli25/Tutorial-1/refs/heads/main/arts_faculty_data.csv")
-
-st.title("Comparison of S.S.C (GPA) by Gender")
-
-    # Plotly boxplot
-    fig = px.box(
-        df_url,
-        x='Gender',
-        y='S.S.C (GPA)',
-        color='Gender',
-        title='Comparison of S.S.C (GPA) by Gender',
-        labels={'Gender': 'Gender', 'S.S.C (GPA)': 'S.S.C (GPA)'},
-        points='all'  # shows individual data points
-    )
-
-    # Display plot
-    st.plotly_chart(fig, use_container_width=True)
-else:
-    st.info("Please upload a CSV file to generate the boxplot.")
-
-
+# Boxplot S.S.C (GPA) by gender
+if 'S.S.C (GPA)' in df_url.columns:
+            st.subheader("📈 Comparison of S.S.C (GPA) by Gender")
+            fig_box = px.box(
+                df_url,
+                x='Gender',
+                y='S.S.C (GPA)',
+                color='Gender',
+                title='Comparison of S.S.C (GPA) by Gender',
+                points='all'
+            )
+            st.plotly_chart(fig_box, use_container_width=True)
+        else:
+            st.warning("⚠️ The column 'S.S.C (GPA)' was not found in the dataset.")
+    else:
+        st.warning("⚠️ The column 'Gender' was not found in the dataset.")
