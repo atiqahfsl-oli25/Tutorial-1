@@ -60,7 +60,7 @@ else:
                 x='Gender',
                 y='H.S.C (GPA)',
                 color='Gender',
-                title='Comparison of S.S.C (GPA) by Gender',
+                title='Comparison of H.S.C (GPA) by Gender',
                 points='all'
             )
             st.plotly_chart(fig_box, use_container_width=True)
@@ -68,4 +68,34 @@ else:
             st.warning("⚠️ The column 'H.S.C (GPA)' was not found in the dataset.")
     else:
         st.warning("⚠️ The column 'Gender' was not found in the dataset.")
+
+# Arts program distribution 
+    if 'Arts Program' in df_url.columns:
+        # Count program occurrences
+        program_counts = df_url['Arts Program'].value_counts().reset_index()
+        program_counts.columns = ['Arts Program', 'Count']
+
+        # Create interactive Plotly bar chart
+        st.subheader("📊 Arts Program Distribution")
+        fig = px.bar(
+            program_counts,
+            x='Arts Program',
+            y='Count',
+            text='Count',
+            title='Distribution of Arts Programs',
+            color='Arts Program'
+        )
+
+        # Improve layout
+        fig.update_layout(
+            xaxis_title="Arts Program",
+            yaxis_title="Number of Students",
+            xaxis_tickangle=-45
+        )
+        fig.update_traces(textposition='outside')
+
+        # Display chart
+        st.plotly_chart(fig, use_container_width=True)
+    else:
+        st.warning("⚠️ The column 'Arts Program' was not found in the dataset.")
        
