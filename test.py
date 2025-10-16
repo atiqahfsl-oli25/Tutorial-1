@@ -53,3 +53,18 @@ else:
             st.warning("⚠️ The column 'S.S.C (GPA)' was not found in the dataset.")
     else:
         st.warning("⚠️ The column 'Gender' was not found in the dataset.")
+
+# Boxplot H.S.C (GPA) by gender 
+        if 'Gender' in df_url.columns and 'H.S.C (GPA)' in df_url.columns:
+            st.subheader("📈 Comparison of H.S.C (GPA) by Gender")
+            fig_hsc = px.box(
+                df_url,
+                x='Gender',
+                y='H.S.C (GPA)',
+                color='Gender',
+                title='Comparison of H.S.C (GPA) by Gender',
+                points='all'
+            )
+            st.plotly_chart(fig_hsc, use_container_width=True)
+        else:
+            st.warning("⚠️ The columns 'Gender' or 'H.S.C (GPA)' were not found in the dataset.")
