@@ -38,3 +38,28 @@ else:
         st.plotly_chart(fig, use_container_width=True)
     else:
         st.warning("⚠️ The column 'Gender' was not found in the dataset.")
+
+
+st.title("Comparison of S.S.C (GPA) by Gender")
+
+# Upload dataset
+uploaded_file = st.file_uploader("Upload your dataset (CSV)", type=["csv"])
+if uploaded_file is not None:
+    df_url = pd.read_csv(uploaded_file)
+
+    # Plotly boxplot
+    fig = px.box(
+        df_url,
+        x='Gender',
+        y='S.S.C (GPA)',
+        color='Gender',
+        title='Comparison of S.S.C (GPA) by Gender',
+        labels={'Gender': 'Gender', 'S.S.C (GPA)': 'S.S.C (GPA)'},
+        points='all'  # shows individual data points
+    )
+
+    # Display plot
+    st.plotly_chart(fig, use_container_width=True)
+else:
+    st.info("Please upload a CSV file to generate the boxplot.")
+
