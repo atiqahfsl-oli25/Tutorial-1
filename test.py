@@ -40,7 +40,7 @@ else:
         st.warning("⚠️ The column 'Gender' was not found in the dataset.")
 
 # Boxplot S.S.C (GPA) by gender
-if 'S.S.C (GPA)' in df_url.columns:
+        if 'S.S.C (GPA)' in df_url.columns:
             st.subheader("📈 Comparison of S.S.C (GPA) by Gender")
             fig_box = px.box(
                 df_url,
