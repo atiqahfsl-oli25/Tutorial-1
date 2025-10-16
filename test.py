@@ -51,8 +51,6 @@ else:
             st.plotly_chart(fig_box, use_container_width=True)
         else:
             st.warning("⚠️ The column 'S.S.C (GPA)' was not found in the dataset.")
-    else:
-        st.warning("⚠️ The column 'Gender' was not found in the dataset.")
 
 # Boxplot H.S.C (GPA) by gender 
         if 'H.S.C (GPA)' in df_url.columns:
@@ -68,3 +66,6 @@ else:
             st.plotly_chart(fig_box, use_container_width=True)
         else:
             st.warning("⚠️ The column 'H.S.C (GPA)' was not found in the dataset.")
+     else:
+        st.warning("⚠️ The column 'Gender' was not found in the dataset.")
+       
