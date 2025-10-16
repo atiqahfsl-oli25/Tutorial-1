@@ -36,9 +36,7 @@ else:
         )
         fig.update_traces(textinfo='percent+label')
         st.plotly_chart(fig, use_container_width=True)
-    else:
-        st.warning("⚠️ The column 'Gender' was not found in the dataset.")
-
+    
 # Boxplot S.S.C (GPA) by gender
         if 'S.S.C (GPA)' in df_url.columns:
             st.subheader("📈 Comparison of S.S.C (GPA) by Gender")
