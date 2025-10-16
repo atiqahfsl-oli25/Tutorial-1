@@ -40,6 +40,9 @@ else:
         st.warning("⚠️ The column 'Gender' was not found in the dataset.")
 
 
+# Example: Load your dataset (replace this with your own)
+# df_url = pd.read_csv("your_dataset.csv")
+
 st.title("Comparison of S.S.C (GPA) by Gender")
 
 # Upload dataset
@@ -62,4 +65,3 @@ if uploaded_file is not None:
     st.plotly_chart(fig, use_container_width=True)
 else:
     st.info("Please upload a CSV file to generate the boxplot.")
-
