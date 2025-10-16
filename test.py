@@ -44,11 +44,6 @@ else:
 
 st.title("Comparison of S.S.C (GPA) by Gender")
 
-# Upload dataset
-uploaded_file = st.file_uploader("Upload your dataset (CSV)", type=["csv"])
-if uploaded_file is not None:
-    df_url = pd.read_csv(uploaded_file)
-
     # Plotly boxplot
     fig = px.box(
         df_url,
