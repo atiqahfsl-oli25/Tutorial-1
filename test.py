@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="Student Survey"
+    page_title="Student Survey" 
 )
 
 visualise = st.Page('Tutorial 1.py', title='Pencapaian Akademik Pelajar', icon=":material/school:")
